@@ -1,0 +1,65 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Library {
+    private List<Book> books;
+    private List<LibraryMember> members;
+
+    public Library() {
+        this.books = new ArrayList<>();
+        this.members = new ArrayList<>();
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
+    public List<LibraryMember> getMembers() {
+        return members;
+    }
+
+    public void setMembers(List<LibraryMember> members) {
+        this.members = members;
+    }
+
+    public void addBook(Book book) {
+        books.add(book);
+    }
+
+    public void addMember(LibraryMember member) {
+        members.add(member);
+    }
+
+    public Book findBookByTitle(String title) {
+        for (Book book : books) {
+            if (book.getTitle().equalsIgnoreCase(title)) {
+                return book;
+            }
+        }
+        return null;
+    }
+
+    public boolean borrowBook(String title, LibraryMember member) {
+        Book book = findBookByTitle(title);
+        if (book != null && book.isAvailable()) {
+            book.setAvailable(false);
+            System.out.println(member.getName() + " взял книгу " + title);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean returnBook(String title, LibraryMember member) {
+        Book book = findBookByTitle(title);
+        if (book != null && !book.isAvailable()) {
+            book.setAvailable(true);
+            System.out.println(member.getName() + " вернул книгу " + title);
+            return true;
+        }
+        return false;
+    }
+}

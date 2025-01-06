@@ -1,0 +1,49 @@
+import java.util.Objects;
+
+public class LibraryMember {
+    private String name;
+    private String membershipId;
+
+    public LibraryMember(String name, String membershipId) {
+        this.name = name;
+        this.membershipId = membershipId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getMembershipId() {
+        return membershipId;
+    }
+
+    public void setMembershipId(String membershipId) {
+        this.membershipId = membershipId;
+    }
+
+    @Override
+    public String toString() {
+        return "LibraryMember{" +
+                "name='" + name + '\'' +
+                ", membershipId='" + membershipId + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LibraryMember that = (LibraryMember) o;
+        return Objects.equals(name, that.name) &&
+                Objects.equals(membershipId, that.membershipId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, membershipId);
+    }
+}
